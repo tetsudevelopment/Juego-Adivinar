@@ -2,7 +2,7 @@ var app = new Vue({
   el: "#app",
   data() {
     return {
-      dataYear: ["2002", "2000", "1999", "2022"],
+      dataYear: ["1975", "1955", "1978", "1927"],
       dataUser: [
         {
           id: 1,
@@ -15,7 +15,6 @@ var app = new Vue({
           punctuation: 80,
         },
       ],
-
       main: 0,
       watchUser: 0,
       id: 0,
@@ -25,7 +24,8 @@ var app = new Vue({
       random: "",
       finish: "",
       clue: "",
-      difference:0,
+      actor: '',
+      personaje:'',
       punctuation:100,
     };
   },
@@ -63,12 +63,9 @@ var app = new Vue({
            punctuation: punctuation,
          });
         return (this.main = 2), (this.finish = "Has ganado");
-      } else {
+      }else {
         this.attempts--
-        this.watchUser = 1;
-        const random= parseInt(this.random)
-        this.difference = this.year - random
-        console.log('diferencia'+ this.difference);
+        this.watchUser = 1; 
         if (this.attempts === 0) {
           this.punctuation =this.punctuation/ 7;
           this.punctuation = this.punctuation * this.attempts;
@@ -85,25 +82,45 @@ var app = new Vue({
           return this.main = 2, this.finish = "Game over";
           
         } else {
-          if (this.difference >= 10) {
-            return (this.clue =
-              "Estas frio diferencia mayor o igual a 10 años del número a adivinar");
-          } else if (this.difference < 10 && this.difference >= 5) {
-            return (this.clue =
-              "Estas tibio diferencia mayor o igual a 5 años del número a adivinar ");
-          } else if (this.difference < 5 && this.difference >= 1) {
-            return (this.clue =
-              "Estas tibio diferencia mayor o igual a 2 años del número a adivinar ");
-          } else if (this.difference <=-10) {
-            return (this.clue =
-              "Estas frio diferencia menor o igual a 10 años del número a adivinar");
-          } else if (this.difference > -10 && this.difference <= -5) {
-            return (this.clue =
-              "Estas tibio diferencia menor o igual a 5 años del número a adivinar ");
-          } else if (this.difference > -5 && this.difference <= -1) {
-            return (this.clue =
-              "Estas tibio diferencia menor o igual a 2 años del número a adivinar ");
+          if (this.attempts === 6) {
+            this.clue = `El numero inicial de la fecha es: ${this.random[0]}`;
+            if (this.random == "1975")
+              return (
+                (this.actor = "Tobey Maguire"),
+                (this.personaje = "Piter Parker")
+              );
+            if (this.random == "1955")
+              return (
+                (this.actor = "Willem Dafoe"),
+                (this.personaje = "Norman Osborn")
+              );
+            if (this.random == "1978")
+              return (
+                (this.actor = "James Franco"), (this.personaje = "Harry Osborn")
+              );
+            if (this.random == "1927")
+              return (
+                (this.actor = "Rosemary Harris"), (this.personaje = "Tia May")
+              );
+          } else if (this.attempts == 5) {
+            this.clue = `El numero Final de la fecha es ${
+              this.random[this.random.length - 1]
+            }`;
+          } else if (this.attempts == 4) {
+            this.clue = `El/Ella interpreto a : ${this.personaje}`;
+          } else if (this.attempts == 3) {
+            this.clue = `El actor a Adivinar es ${this.actor}`;
+          } else if (this.attempts == 2) {
+            this.clue = `El Segundo numero de la fecha es ${this.random[this.random.length - 3]
+            }`;
+          } else {
+            this.clue = `El tercer numero de la fecha es ${
+              this.random[this.random.length - 2]
+            }`;
           }
+          
+          
+          
         }
       }
     },

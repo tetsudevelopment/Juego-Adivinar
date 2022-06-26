@@ -14,17 +14,17 @@
 <body>
   <header>
     <div class="w-100 h-100 d-flex justify-content-center"> 
-      <h1 class="d-flex align-items-center">Juego Adivina Fecha</h1>
+      <h1 class="d-flex align-items-center">Adivina El año de nacimiento</h1>
     </div>
   </header>
   <div class=" vh-100" id="app">
     <div class="h-100">
       <!-- Tendra varios cambios -->
-      <div class="main container h-50 mt-2 d-flex flex-column rounded-2" >
-
+      <div class="main container h-50 mt-2 d-flex flex-column rounded-2 text-center" >
+        <h2>Version-Elenco de Spider-man 2002</h2>
         <section class="container h-100 d-flex flex-column justify-content-around w-50" v-if="main===0" >
           <div>
-            <label for="" class="mb-1">Nombre Jugador</label>
+            <label for="" class="mb-1 h3">Nombre Jugador</label>
             <input type="text" class="form-control"  v-model="nameUser">
           </div>
           <div class="mt-5 d-flex justify-content-center">
@@ -33,12 +33,12 @@
         </section>
         <section class="container h-100 d-flex flex-column justify-content-around w-50" v-if="main===1">
           <div class="d-flex flex-row justify-content-around">
-            <p>Jugador: {{nameUser}}</p>
-            <p>Intentos restantes: {{attempts}}</p>
+            <p>Jugador: <span v-text="nameUser"></span></p>
+            <p>Intentos restantes: <span v-text="attempts"></span></p>
           </div>
           <section>
             <div class="w-100 d-flex justify-content-center mb-5" v-if="watchUser===1">
-              <h5>{{clue}}</h5>
+              <h5 v-text="clue"></h5>
             </div>
             <div>
               <label for="" class="mb-1">Escriba el año a adivinar</label>
@@ -52,11 +52,11 @@
         </section>
         <section class="container h-100 d-flex flex-column justify-content-around w-50" v-if="main===2">
           <div class="d-flex flex-row justify-content-around">
-            <p>Jugador: {{nameUser}}</p>
-            <p>Intentos restantes: {{attempts}}</p>
+            <p>Jugador: <span v-text="nameUser"></span></p>
+            <p>Intentos restantes: <span v-text="attempts"></span></p>
           </div>
           <div class="w-100 d-flex justify-content-center">
-            <h1>{{finish}}</h1>
+            <h1 v-text="finish"></h1>
           </div>
           <div class="mt-5 d-flex justify-content-center">
             <button class="w-50 btn btn-primary" @click="backHome">Volver</button>
@@ -79,9 +79,9 @@
             </thead>
             <tbody class="table-group-divider"  v-for="item in dataUser">
               <tr>
-                <th scope="row">{{item.id}}</th>
-                <td>{{item.nameUser}}</td> 
-                <td>{{item.punctuation}}</td>
+                <th scope="row" v-text="item.id"></th>
+                <td v-text="item.nameUser"></td> 
+                <td v-text="item.punctuation"></td>
               </tr>
             </tbody>
           </table>
